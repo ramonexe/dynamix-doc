@@ -1,5 +1,6 @@
 import { Botao } from 'dynamix-button';
 import styled from 'styled-components';
+import { CodeBlock } from '../components/CodeBlock';
 
 export default function ButtonDoc() {
     return (
@@ -10,10 +11,10 @@ export default function ButtonDoc() {
             <Botao>Botão padrão</Botao>
             <Botao variant="outline">Botão outlined</Botao>
 
-            <pre>{`
-                <Botao>Botão padrão</Botao>
-                <Botao variant="outlined">Botão outlined</Botao>
-            `}</pre>
+            <CodeBlock>{`
+<Botao>Botão padrão</Botao>
+<Botao variant="outlined">Botão outlined</Botao>
+            `}</CodeBlock>
         </Section>
     );
 }

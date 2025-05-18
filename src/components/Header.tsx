@@ -3,21 +3,33 @@ import styled from 'styled-components';
 import { useTheme } from '../contexts/ThemeContext';
 import { Moon, Sun } from 'lucide-react';
 import { Botao } from 'dynamix-button';
+import { useNavigate } from 'react-router-dom';
 
 export default function Header() {
     const { mode, toggleTheme } = useTheme();
+    const navigate = useNavigate();
+
+    const toComponents = () => {
+        navigate('/button');
+    };
 
     return (
         <HeaderContainer>
             <HeaderTitle><Dynamix className='josefin'>Dynamix</Dynamix><Doc> Doc</Doc></HeaderTitle>
-            <Botao
-                onClick={toggleTheme}
-                variant="outline"
-                size="sm"
-                icon={mode === 'light' ? <Moon /> : <Sun />}
-            >
-                Toggle Theme
-            </Botao>
+            <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+                <Botao variant='ghost' textColor='crimson' onClick={toComponents}>Components</Botao>
+                <Botao
+                    onClick={toggleTheme}
+                    variant="outline"
+                    size="sm"
+                    borderColor='crimson'
+                    textColor='crimson'
+                    icon={mode === 'light' ? <Moon /> : <Sun />}
+                    iconPosition="right"
+                >
+                    Toggle Theme
+                </Botao>
+            </div>
         </HeaderContainer>
     );
 }
@@ -41,6 +53,10 @@ const Doc = styled.h2`
 `;
 
 const HeaderContainer = styled.header`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
   width: 100vw;
   padding: 1rem 2rem;
   display: flex;
@@ -48,4 +64,6 @@ const HeaderContainer = styled.header`
   align-items: center;
   box-sizing: border-box;
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+  background: ${({ theme }) => theme.background};
+  z-index: 1000;
 `;
