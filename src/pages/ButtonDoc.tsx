@@ -1,26 +1,19 @@
 import { Botao } from 'dynamix-button';
-import styled from 'styled-components';
 import { CodeBlock } from '../components/CodeBlock';
+import { Section } from '../components/layout/Section';
 
 export default function ButtonDoc() {
     return (
         <Section>
-            <h1>Botão</h1>
-            <p>Este é o componente de botão da sua biblioteca:</p>
+            <h1>Button Compoonent</h1>
+            <p>Example to use Dynamix Button:</p>
+            <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+                <Botao backgroundColor='crimson' hoverBackgroundColor='#aa112b' activeBackgroundColor='#770d1f'>Default Button</Botao>
+                <Botao variant="outline" borderColor='crimson' textColor='crimson'>Outlined Button</Botao>
+            </div>
 
-            <Botao>Botão padrão</Botao>
-            <Botao variant="outline">Botão outlined</Botao>
-
-            <CodeBlock>{`
-<Botao>Botão padrão</Botao>
-<Botao variant="outlined">Botão outlined</Botao>
-            `}</CodeBlock>
+            <CodeBlock>{`<Botao>Default Button</Botao>
+<Botao variant="outlined">Outlined Button</Botao>`}</CodeBlock>
         </Section>
     );
 }
-
-const Section = styled.section`
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-`;

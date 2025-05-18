@@ -4,7 +4,7 @@ export const lightTheme = {
     sidebar: '#f0f0f0',
     header: '#f8f8f8',
     codeBackground: '#f0f0f0',
-    codeText: '#1a1a1a',
+    codeText: 'rgba(26,26,26,0.7)',
 };
 
 export const darkTheme = {
@@ -13,7 +13,7 @@ export const darkTheme = {
     sidebar: '#222',
     header: '#2a2a2a',
     codeBackground: '#333',
-    codeText: '#ffffff',
+    codeText: 'rgba(255,255,255,0.7)',
 };
 
 export type ThemeType = typeof lightTheme;

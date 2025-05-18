@@ -9,15 +9,11 @@ export default function Header() {
     const { mode, toggleTheme } = useTheme();
     const navigate = useNavigate();
 
-    const toComponents = () => {
-        navigate('/button');
-    };
-
     return (
         <HeaderContainer>
-            <HeaderTitle><Dynamix className='josefin'>Dynamix</Dynamix><Doc> Doc</Doc></HeaderTitle>
+            <HeaderTitle onClick={() => navigate('/')}><Dynamix className='josefin'>Dynamix</Dynamix><Doc> Doc</Doc></HeaderTitle>
             <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-                <Botao variant='ghost' textColor='crimson' onClick={toComponents}>Components</Botao>
+                <Botao variant='ghost' textColor='crimson' onClick={() => navigate('/button')}>Components</Botao>
                 <Botao
                     onClick={toggleTheme}
                     variant="outline"
@@ -38,6 +34,7 @@ const HeaderTitle = styled.div`
     display: flex;
     gap: 0.5rem;
     align-items: center;
+    cursor: pointer;
 `;
 
 const Dynamix = styled.h1`
@@ -64,6 +61,5 @@ const HeaderContainer = styled.header`
   align-items: center;
   box-sizing: border-box;
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
-  background: ${({ theme }) => theme.background};
   z-index: 1000;
 `;
