@@ -10,7 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "dynamix-button": "^1.0.12",
+    "dynamix-button": "^1.0.13",
     "lucide-react": "^0.511.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",

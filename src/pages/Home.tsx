@@ -1,5 +1,5 @@
-import { Botao } from 'dynamix-button';
-import { GithubIcon, Star } from 'lucide-react';
+import { Button } from 'dynamix-button';
+import { ArrowRight, GithubIcon, Star } from 'lucide-react';
 import styled from 'styled-components';
 import { Container } from '../components/layout/Container';
 import { useNavigate } from 'react-router-dom';
@@ -18,7 +18,7 @@ export default function Home() {
 
     return (
         <Container>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', maxWidth: '600px' }}>
+            <ContentWrapper>
                 <Title className='josefin'>Dynamix</Title>
                 <Badges>
                     <img src="https://img.shields.io/npm/v/dynamix-button?color=%2300b894" alt="npm version" />
@@ -29,61 +29,69 @@ export default function Home() {
                     Official documentation of <strong>dynamix-button</strong>. <br />Here you will find examples and instructions on how to use the available components.
                 </Paragraph>
 
-                <div style={{ display: 'flex', gap: '1rem', flexWrap: 'nowrap', width: 'fit-content' }}>
-                    <Botao
+                <ButtonGroup>
+                    <Button
                         onClick={hrefToGithub}
                         icon={<GithubIcon />}
                         iconPosition="right"
                         variant="outline"
-                        borderColor="crimson"
-                        textColor="crimson"
                     >
                         View on GitHub
-                    </Botao>
-                    <Botao
+                    </Button>
+                    <Button
                         onClick={hrefToNpm}
                         icon={<Star />}
                         iconPosition="right"
                         variant="outline"
-                        borderColor="crimson"
-                        textColor="crimson"
                     >
                         View on NPMjs
-                    </Botao>
-                    <Botao
-                        backgroundColor='crimson'
-                        hoverBackgroundColor='#aa112b'
-                        activeBackgroundColor='#770d1f'
-                        onClick={() => navigate('/button')}
-                    >
-                        Get Started
-                    </Botao>
-                </div>
-            </div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', maxWidth: '600px', marginTop: '2rem' }}>
+                    </Button>
+                    <Button onClick={() => navigate('/button')} icon={<ArrowRight />} iconPosition='right' alwaysShowText>Get Started</Button>
+                </ButtonGroup>
+            </ContentWrapper>
+            <Example>
                 <Image src={example} alt="example" />
-                <Botao
-                    backgroundColor='crimson'
-                    hoverBackgroundColor='#aa112b'
-                    activeBackgroundColor='#770d1f'
-                >
-                    Simple Button
-                </Botao>
-            </div>
+                <Button>Example</Button>
+            </Example>
         </Container>
     );
 }
 
+const ContentWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 600px;
+  width: 100%;
+  box-sizing: border-box;
+
+  @media (max-width: 700px) {
+    max-width: 100%;
+    padding: 0 1rem;
+  }
+`;
+
+const Example = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 600px;
+  width: 100%;
+  margin-top: 2rem;
+
+  @media (max-width: 700px) {
+    max-width: 100%;
+    padding: 0 1rem;
+  }
+`;
+
 const Image = styled.img`
   width: 100%;
+  max-width: 400px;
   height: auto;
   border-radius: 5px;
-  transition: filter 0.3s ease-in-out;
-  cursor: default;
-
-  &:hover {
-    filter: drop-shadow(0 0 5em #fc334429);
-  }
+  filter: drop-shadow(10em 10em 7em #fc334429);
 `;
 
 const Title = styled.h1`
@@ -96,15 +104,47 @@ const Title = styled.h1`
   &:hover {
     filter: drop-shadow(0 0 2em #fc3344);
   }
+
+  @media (max-width: 900px) {
+    font-size: 3rem;
+    text-align: center;
+  }
+
+  @media (max-width: 400px) {
+    font-size: 2rem;
+  }
 `;
 
 const Paragraph = styled.p`
   font-size: 1rem;
   line-height: 1.6;
+
+  @media (max-width: 900px) {
+    font-size: 0.95rem;
+    text-align: center;
+  }
 `;
 
 const Badges = styled.div`
   display: flex;
   gap: 1rem;
   flex-wrap: wrap;
+  justify-content: flex-start;
+
+  @media (max-width: 900px) {
+    justify-content: center;
+  }
+`;
+
+const ButtonGroup = styled.div`
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  width: fit-content;
+
+  @media (max-width: 900px) {
+    width: 100%;
+    justify-content: center;
+    gap: 0.5rem;
+  }
 `;

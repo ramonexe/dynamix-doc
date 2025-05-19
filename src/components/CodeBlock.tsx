@@ -8,4 +8,11 @@ export const CodeBlock = styled.pre`
   font-family: monospace;
   font-size: 1rem;
   overflow-x: auto;
+  box-sizing: border-box;
+  white-space: pre-wrap;
+
+  @media (max-width: 600px) {
+    font-size: 0.9rem;
+    padding: 1.5rem 0.5rem;
+  }
 `;
