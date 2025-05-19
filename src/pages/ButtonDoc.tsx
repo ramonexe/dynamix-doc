@@ -5,7 +5,7 @@ import { Section } from '../components/layout/Section';
 export default function ButtonDoc() {
     return (
         <Section>
-            <h1>Button Compoonent</h1>
+            <h1>Button Component</h1>
             <p>Example to use Dynamix Button:</p>
             <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
                 <Botao backgroundColor='crimson' hoverBackgroundColor='#aa112b' activeBackgroundColor='#770d1f'>Default Button</Botao>

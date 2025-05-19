@@ -9,14 +9,22 @@ import Home from './pages/Home';
 function App() {
   const location = useLocation();
 
+  if (location.pathname === '/') {
+    return (
+      <>
+        <Header />
+        <Home />
+      </>
+    );
+  }
+
   return (
     <Layout>
-      {location.pathname !== '/' && <Sidebar />}
+      <Sidebar />
       <div>
         <Header />
         <ContentArea>
           <Routes>
-            <Route path="/" element={<Home />} />
             <Route path="/button" element={<ButtonDoc />} />
           </Routes>
         </ContentArea>
