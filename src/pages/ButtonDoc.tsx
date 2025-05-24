@@ -114,7 +114,7 @@ import { Heart } from 'lucide-react';
 </Button>
 `}</CodeBlock>
 
-            <h2>Full Width & Disabled</h2>
+            <h3>Full Width & Disabled</h3>
             <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', marginBottom: 16, width: '100%' }}>
                 <Button fullWidth>Full Width Button</Button>
                 <Button disabled>Disabled Button</Button>
@@ -123,7 +123,7 @@ import { Heart } from 'lucide-react';
 <Button disabled>Disabled Button</Button>
 `}</CodeBlock>
 
-            <h2>Accessibility</h2>
+            <h3>Accessibility</h3>
             <Button
                 ariaLabel="Button to submit form"
                 title="Click to submit the form"
@@ -138,7 +138,7 @@ import { Heart } from 'lucide-react';
 </Button>
 `}</CodeBlock>
 
-            <h2>Expansion Behavior</h2>
+            <h3>Expansion Behavior</h3>
             <p>
                 When a button has an icon, it can expand on hover to show the text. This is ideal for toolbars or compact menus.
             </p>
@@ -158,7 +158,7 @@ import { Heart } from 'lucide-react';
 </div>
 `}</CodeBlock>
 
-            <h2>Usage with Icon Libraries</h2>
+            <h3>Usage with Icon Libraries</h3>
             <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', marginBottom: 16 }}>
                 <Button icon={<Download />}>Download</Button>
             </div>
