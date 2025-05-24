@@ -18,7 +18,7 @@ import { Heart } from 'lucide-react';
 <Button icon={<Heart />}>Favorite</Button>
 `}</CodeBlock>
 
-            <h2>Variants</h2>
+            <h3>Variants</h3>
             <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', marginBottom: 16 }}>
                 <Button variant="primary">Primary</Button>
                 <Button variant="secondary">Secondary</Button>
@@ -33,7 +33,7 @@ import { Heart } from 'lucide-react';
 <Button variant="danger">Danger</Button>
 `}</CodeBlock>
 
-            <h2>Sizes</h2>
+            <h3>Sizes</h3>
             <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', marginBottom: 16 }}>
                 <Button size="sm">Small</Button>
                 <Button size="md">Medium</Button>
@@ -44,7 +44,7 @@ import { Heart } from 'lucide-react';
 <Button size="lg">Large</Button>
 `}</CodeBlock>
 
-            <h2>Button with Icon (Hover Expansion)</h2>
+            <h3>Button with Icon (Hover Expansion)</h3>
             <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', marginBottom: 16 }}>
                 <Button icon={<Send />}>Send</Button>
                 <Button icon={<Send />} iconPosition="right">Send</Button>
@@ -55,7 +55,17 @@ import { Heart } from 'lucide-react';
 <Button icon={<Send />} iconPosition="right">Send</Button>
 `}</CodeBlock>
 
-            <h2>Loading State</h2>
+            <h3>Button with Icon (No Expansion)</h3>
+            <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', marginBottom: 16 }}>
+                <Button icon={<Send />} alwaysShowText>Send</Button>
+                <Button icon={<Send />} iconPosition="right" alwaysShowText>Send</Button>
+            </div>
+            <CodeBlock>{`import { Send } from 'lucide-react';
+<Button icon={<Send />} noExpand>Send</Button>
+<Button icon={<Send />} iconPosition="right" noExpand>Send</Button>
+`}</CodeBlock>
+
+            <h3>Loading State</h3>
             <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', marginBottom: 16 }}>
                 <Button loading loadingText="Sending...">Send</Button>
                 <Button loading>Send</Button>
@@ -64,7 +74,7 @@ import { Heart } from 'lucide-react';
 <Button loading>Send</Button>
 `}</CodeBlock>
 
-            <h2>Custom Colors</h2>
+            <h3>Custom Colors</h3>
             <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', marginBottom: 16 }}>
                 <Button
                     backgroundColor="#3498db"

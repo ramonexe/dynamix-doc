@@ -1,34 +1,65 @@
-// src/components/Header.tsx
 import styled, { css } from 'styled-components';
 import { useTheme } from '../contexts/ThemeContext';
 import { Moon, Sun } from 'lucide-react';
 import { Button } from 'dynamix-button';
 import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+
+function useIsLarge() {
+  const [isLarge, setIsLarge] = useState(() => window.innerWidth >= 900);
+
+  useEffect(() => {
+    function handleResize() {
+      setIsLarge(window.innerWidth >= 900);
+    }
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  return isLarge;
+}
 
 export default function Header() {
-    const { mode, toggleTheme } = useTheme();
-    const navigate = useNavigate();
+  const { mode, toggleTheme } = useTheme();
+  const navigate = useNavigate();
+  const isLarge = useIsLarge();
 
-    return (
-        <HeaderContainer $notHome={location.pathname !== '/'}>
-            <HeaderTitle onClick={() => navigate('/')}><Dynamix className='josefin'>Dynamix</Dynamix><Doc> Doc</Doc></HeaderTitle>
-            <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-                <Button variant='ghost' textColor='crimson' onClick={() => navigate('/button')}>Components</Button>
-                <Button
-                    onClick={toggleTheme}
-                    variant="outline"
-                    size="sm"
-                    borderColor='crimson'
-                    textColor='crimson'
-                    icon={mode === 'light' ? <Moon /> : <Sun />}
-                    iconPosition="right"
-                >
-                    Toggle Theme
-                </Button>
-            </div>
-        </HeaderContainer>
-    );
+  return (
+    <HeaderContainer $notHome={location.pathname !== '/'}>
+      <HeaderTitle onClick={() => navigate('/')}><Dynamix className='josefin'>Dynamix</Dynamix><Doc> Doc</Doc></HeaderTitle>
+      <DivButtons>
+        <Button variant='ghost' textColor='crimson' onClick={() => navigate('/')} size={isLarge ? undefined : 'sm'}>Home</Button>
+        <Button variant='ghost' textColor='crimson' onClick={() => navigate('/button')} size={isLarge ? undefined : 'sm'}>Components</Button>
+        <Button
+          onClick={toggleTheme}
+          variant="outline"
+          size="sm"
+          borderColor='crimson'
+          textColor='crimson'
+          icon={mode === 'light' ? <Moon /> : <Sun />}
+          iconPosition="right"
+        >
+          Toggle Theme
+        </Button>
+      </DivButtons>
+    </HeaderContainer>
+  );
 }
+
+const DivButtons = styled.div`
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+
+  @media (max-width: 900px) {
+    gap: 0.2rem;
+  }
+
+  @media (max-width: 400px) {
+    gap: 0rem;
+  }
+`;
 
 const HeaderContainer = styled.header<{ $notHome: boolean }>`
   position: fixed;
@@ -36,20 +67,21 @@ const HeaderContainer = styled.header<{ $notHome: boolean }>`
   left: 0;
   right: 0;
   width: 100vw;
-  padding: 1rem 2rem;
+  padding: 1rem 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   box-sizing: border-box;
   z-index: 1000;
   background: ${({ theme }) => theme.header};
+  transition: all 0.2s ease-in-out;
 
   @media (max-width: 900px) {
     gap: 0.5rem;
     padding: 0.7rem 0.5rem;
     ${({ $notHome }) =>
-        $notHome &&
-        css`
+    $notHome &&
+    css`
         padding-left: 5rem;
       `}
   }
@@ -65,6 +97,7 @@ const HeaderTitle = styled.div`
   gap: 0.5rem;
   align-items: center;
   cursor: pointer;
+  transition: all 0.2s ease-in-out;
 
   @media (max-width: 900px) {
     font-size: 1.5rem;
@@ -77,6 +110,7 @@ const Dynamix = styled.h1`
   font-style: italic;
   color: crimson;
   font-size: 2rem;
+  transition: all 0.2s ease-in-out;
 
   @media (max-width: 900px) {
     font-size: 1.5rem;
@@ -87,6 +121,7 @@ const Doc = styled.h2`
   font-weight: 400;
   color: ${({ theme }) => theme.text};
   font-size: 1.2rem;
+  transition: all 0.2s ease-in-out;
 
   @media (max-width: 900px) {
     font-size: 1rem;

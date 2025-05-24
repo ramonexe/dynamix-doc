@@ -5,6 +5,8 @@ import Header from './components/Header';
 import Sidebar from './components/Sidebar';
 import ButtonDoc from './pages/ButtonDoc';
 import Home from './pages/Home';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   const location = useLocation();
@@ -14,6 +16,7 @@ function App() {
       <>
         <Header />
         <Home />
+        <ToastContainer />
       </>
     );
   }
@@ -29,6 +32,7 @@ function App() {
           </Routes>
         </ContentArea>
       </div>
+      <ToastContainer />
     </Layout>
   );
 }

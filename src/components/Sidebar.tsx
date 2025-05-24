@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Component, LayoutPanelLeft, Menu, Paintbrush, X } from 'lucide-react';
 import { useState, useRef, useEffect } from 'react';
 
 export default function Sidebar() {
@@ -9,13 +9,11 @@ export default function Sidebar() {
   const [open, setOpen] = useState(false);
   const sidebarRef = useRef<HTMLDivElement>(null);
 
-  // Fecha o menu ao clicar em um item (em telas pequenas)
   const handleNavigate = (path: string) => {
     navigate(path);
     setOpen(false);
   };
 
-  // Fecha ao clicar fora do sidebar
   useEffect(() => {
     if (!open) return;
     function handleClickOutside(event: MouseEvent) {
@@ -45,14 +43,7 @@ export default function Sidebar() {
         >
           <X size={28} />
         </CloseButton>
-        <NavItem
-          $active={location.pathname === '/'}
-          onClick={() => handleNavigate('/')}
-        >
-          Home
-        </NavItem>
-        <Divider />
-        <SectionTitle>Components</SectionTitle>
+        <SectionTitle><Component /> Components</SectionTitle>
         <NavItem
           $active={location.pathname === '/button'}
           onClick={() => handleNavigate('/button')}
@@ -60,13 +51,12 @@ export default function Sidebar() {
           Button
         </NavItem>
         <Divider />
-        <SectionTitle>Layout</SectionTitle>
+        <SectionTitle><LayoutPanelLeft /> Layout</SectionTitle>
         <NavItem>Coming soon</NavItem>
         <Divider />
-        <SectionTitle>Utilities</SectionTitle>
+        <SectionTitle><Paintbrush /> Utilities</SectionTitle>
         <NavItem>Coming soon</NavItem>
       </SidebarContainer>
-      {/* Overlay para fechar ao clicar fora */}
       {open && <SidebarOverlay onClick={() => setOpen(false)} />}
     </>
   );
@@ -85,6 +75,7 @@ const SidebarMenuButton = styled.button`
   padding: 0.5rem;
   cursor: pointer;
   box-shadow: 0 2px 20px rgba(204, 27, 57, 0.377);
+  transition: all 0.2s ease-in-out;
 
   @media (max-width: 900px) {
     display: block;
@@ -105,6 +96,7 @@ const SidebarContainer = styled.aside<{ $open: boolean }>`
   background: ${({ theme }) => theme.sidebar};
   z-index: 1200;
   position: fixed;
+  transition: all 0.2s ease-in-out;
 
       &::after {
       content: '';
@@ -117,8 +109,13 @@ const SidebarContainer = styled.aside<{ $open: boolean }>`
       border-left: 6px solid ${({ theme }) => theme.sidebar};
       border-top-left-radius: 20px;
       pointer-events: none;
-      z-index: 1300;
+      z-index: 1;
       background: transparent;
+      transition: all 0.2s ease-in-out;
+
+      @media (max-width: 900px) {
+        display: none;
+      }
     }
 
   @media (max-width: 900px) {
@@ -149,6 +146,8 @@ const SidebarOverlay = styled.div`
     background: rgba(0,0,0,0.18);
     z-index: 1199;
     animation: fadeIn 0.25s;
+    backdrop-filter: blur(4px);
+    transition: all 0.2s ease-in-out;
   }
 
   @keyframes fadeIn {
@@ -167,6 +166,7 @@ const CloseButton = styled.button`
   cursor: pointer;
   z-index: 1201;
   color: ${({ theme }) => theme.text};
+  transition: all 0.2s ease-in-out;
   transition: color 0.18s;
 
   &:hover {
@@ -179,9 +179,13 @@ const CloseButton = styled.button`
 `;
 
 const SectionTitle = styled.h3`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   margin: 1.5rem 0 1rem 0;
   font-weight: 700;
-  font-size: 1rem;
+  font-size: 0.9rem;
+  transition: all 0.2s ease-in-out;
 `;
 
 interface NavItemProps {
@@ -189,13 +193,14 @@ interface NavItemProps {
 }
 
 const NavItem = styled.div<NavItemProps>`
-  font-size: 0.95rem;
+  font-size: 0.8rem;
   margin-bottom: 1rem;
   cursor: pointer;
   border-radius: 6px;
   padding: 0.3rem 0.5rem;
   transition: background 0.18s, color 0.18s;
   color: ${({ $active }) => ($active ? 'crimson' : 'inherit')};
+  transition: all 0.2s ease-in-out;
 
   &:hover {
     background: ${({ theme }) => theme.codeBackground || '#eee'};
@@ -207,4 +212,5 @@ const Divider = styled.hr`
   border: none;
   border-top: 1px solid ${({ theme }) => theme.codeBackground || '#ccc'};
   margin: 1.5rem 0;
+  transition: all 0.2s ease-in-out;
 `;
