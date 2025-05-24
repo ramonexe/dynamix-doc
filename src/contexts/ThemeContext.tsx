@@ -16,7 +16,13 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
 
   useEffect(() => {
     const stored = localStorage.getItem('theme');
-    if (stored === 'dark') setMode('dark');
+    if (stored === 'dark' || stored === 'light') {
+      setMode(stored);
+    } else {
+      const prefersDark = window.matchMedia &&
+        window.matchMedia('(prefers-color-scheme: dark)').matches;
+      setMode(prefersDark ? 'dark' : 'light');
+    }
   }, []);
 
   const toggleTheme = () => {

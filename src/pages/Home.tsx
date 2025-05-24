@@ -110,7 +110,7 @@ const Title = styled.h1`
     text-align: center;
   }
 
-  @media (max-width: 400px) {
+  @media (max-width: 420px) {
     font-size: 2rem;
   }
 `;

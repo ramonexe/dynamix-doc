@@ -24,7 +24,7 @@ export const Section = styled.section`
     }
   }
 
-  @media (max-width: 400px) {
+  @media (max-width: 420px) {
     width: 100%;
     padding-top: 3rem;
 

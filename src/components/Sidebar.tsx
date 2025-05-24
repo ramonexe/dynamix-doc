@@ -81,7 +81,7 @@ const SidebarMenuButton = styled.button`
     display: block;
   }
 
-  @media (max-width: 400px) {
+  @media (max-width: 420px) {
     top: 78px;
     left: 16px;
   }

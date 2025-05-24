@@ -30,21 +30,33 @@ export default function Header() {
       <DivButtons>
         <Button variant='ghost' textColor='crimson' onClick={() => navigate('/')} size={isLarge ? undefined : 'sm'}>Home</Button>
         <Button variant='ghost' textColor='crimson' onClick={() => navigate('/button')} size={isLarge ? undefined : 'sm'}>Components</Button>
-        <Button
+        <Theme
           onClick={toggleTheme}
-          variant="outline"
-          size="sm"
-          borderColor='crimson'
-          textColor='crimson'
-          icon={mode === 'light' ? <Moon /> : <Sun />}
-          iconPosition="right"
         >
-          Toggle Theme
-        </Button>
+          {mode === 'light' ? <Moon /> : <Sun />}
+        </Theme>
       </DivButtons>
     </HeaderContainer>
   );
 }
+
+const Theme = styled.button`
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: crimson;
+  font-size: 1.5rem;
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    color: #ff4d4d;
+    transform: scale(1.1);
+  }
+
+  @media (max-width: 900px) {
+    font-size: 1.2rem;
+  }
+`;
 
 const DivButtons = styled.div`
   display: flex;
@@ -56,7 +68,7 @@ const DivButtons = styled.div`
     gap: 0.2rem;
   }
 
-  @media (max-width: 400px) {
+  @media (max-width: 420px) {
     gap: 0rem;
   }
 `;
@@ -82,11 +94,11 @@ const HeaderContainer = styled.header<{ $notHome: boolean }>`
     ${({ $notHome }) =>
     $notHome &&
     css`
-        padding-left: 5rem;
+        padding-left: 4.5rem;
       `}
   }
 
-  @media (max-width: 400px) {
+  @media (max-width: 420px) {
     padding-left: 0;
     flex-direction: column;
   }
@@ -101,6 +113,10 @@ const HeaderTitle = styled.div`
 
   @media (max-width: 900px) {
     font-size: 1.5rem;
+  }
+
+  @media (max-width: 420px) {
+    font-size: 1.2rem;
   }
 `;
 
